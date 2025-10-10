@@ -1,0 +1,9 @@
+{
+  "common" : {
+    "example_key" : "Example Value"
+  },
+  "error" : {
+    "unexpected_error_occurred" : "Unexpected error occurred",
+    "network_error_occurred" : "Network error occurred"
+  }
+}

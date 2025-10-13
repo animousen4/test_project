@@ -1,19 +1,21 @@
 import 'package:core/core.dart';
+import 'package:data/src/db/app_drift_db.dart';
+import 'package:data/src/providers/db/user_cache_provider_impl.dart';
+import 'package:data/src/providers/user_cache_provider.dart';
 import 'package:domain/domain.dart';
 import 'package:retrofit/error_logger.dart';
 
 import '../../data.dart';
-import '../entities/user_entity.dart';
 import '../mappers/entity_mapper.dart';
 import '../mappers/user/company_model_mapper_impl.dart';
 import '../mappers/user/geo_model_mapper_impl.dart';
 import '../mappers/user/user_address_mapper_impl.dart';
 import '../providers/user_api_provider.dart';
-import '../repositories/user_repository_impl.dart';
 
 abstract class DataDI {
   static void initDependencies(GetIt locator) {
     _initApi(locator);
+    _initDb(locator);
     _initProviders(locator);
     _initRepositories(locator);
   }
@@ -38,14 +40,23 @@ abstract class DataDI {
     );
   }
 
+  static void _initDb(GetIt locator) {
+    locator.registerSingleton<AppDriftDatabase>(AppDriftDatabase());
+  }
+
   static void _initProviders(GetIt locator) {
-    locator.registerLazySingleton<UserApiProvider>(
-      () => UserApiProvider(
+    locator.registerSingleton<UserApiProvider>(
+      UserApiProvider(
         locator<DioConfig>().dio,
         baseUrl: locator<AppConfig>().baseUrl,
         errorLogger: locator<ParseErrorLogger>(),
       ),
     );
+
+    locator.registerSingleton<UserCacheProvider>(UserCacheProviderImpl(
+      db: locator<AppDriftDatabase>(),
+      userDbModelMapper: UserDbModelMapper(),
+    ));
 
     locator.registerLazySingleton<ToModelMapper<UserModel, UserEntity>>(
       () => UserModelMapperImpl(
@@ -62,6 +73,7 @@ abstract class DataDI {
   static void _initRepositories(GetIt locator) {
     locator.registerLazySingleton<UserRepository>(
       () => UserRepositoryImpl(
+        userCacheProvider: locator<UserCacheProvider>(),
         userApi: locator<UserApiProvider>(),
         userMapper: locator<ToModelMapper<UserModel, UserEntity>>(),
       ),

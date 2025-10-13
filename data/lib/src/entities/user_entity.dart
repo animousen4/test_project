@@ -4,7 +4,7 @@ part 'user_entity.g.dart';
 
 @JsonSerializable()
 class UserEntity {
-  final String id;
+  final int id;
   final String name;
   final String username;
   final String email;

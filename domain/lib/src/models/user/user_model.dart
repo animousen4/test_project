@@ -3,7 +3,7 @@ part 'company_model.dart';
 part 'geo_model.dart';
 
 class UserModel {
-  final String id;
+  final int id;
   final String name;
   final String username;
   final String email;

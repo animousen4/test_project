@@ -8,5 +8,15 @@
     "unknown_error_occurred" : "Unknown error occurred",
     "network_error_occurred" : "Network error occurred",
     "show_exception_details": "Show exception details"
+  },
+  "user": {
+    "user_data": "User data: {username}",
+    "users": "Users",
+    "username": "Username",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "company": "Company"
+    
   }
 }

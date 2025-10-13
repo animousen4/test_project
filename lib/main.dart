@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:data/data.dart';
@@ -13,6 +15,14 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
   
   _setupDI(Flavor.dev);
+
+  // runZonedGuarded(
+  //   () => ,
+  //   (error, stackTrace) {
+  //     // log error to monitoring service
+
+  //   },
+  // );
 
   runApp(const App());
 }

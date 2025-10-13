@@ -1,4 +1,5 @@
 import 'package:data/src/db/app_drift_db.dart';
+import 'package:data/src/db/tables/user/user_table.dart';
 import 'package:data/src/entities/user_entity.dart';
 import 'package:data/src/providers/user_cache_provider.dart';
 import 'package:drift/drift.dart';
@@ -33,41 +34,42 @@ class UserCacheProviderImpl implements UserCacheProvider {
   }
 
   @override
-  Future<void> saveAllUsers(List<UserEntity> users) {
-    return _db.transaction(() async {
-      for (final user in users) {
-        await _db.into(_db.users).insertOnConflictUpdate(
-              UsersCompanion.insert(
-                id: user.id,
-                name: user.name,
-                username: user.username,
-                email: user.email,
-                phone: user.phone,
-                website: user.website,
-              ),
-            );
+  Future<void> saveAllUsers(List<UserEntity> users) async {
+    await _db.batch((batch) {
+      batch.deleteAll(_db.addresses);
+      batch.deleteAll(_db.companies);
+      batch.deleteAll(_db.users);
+      batch.insertAllOnConflictUpdate(
+        _db.users,
+        users.map((u) => UsersCompanion.insert(
+              id: Value(u.id),
+              name: u.name,
+              username: u.username,
+              email: u.email,
+              phone: u.phone,
+              website: u.website,
+            )),
+      );
+      final addresses = users.map((u) => AddressesCompanion.insert(
+            userId: u.id,
+            street: u.address.street,
+            suite: u.address.suite,
+            city: u.address.city,
+            zipcode: u.address.zipcode,
+            lat: u.address.geo.lat,
+            lng: u.address.geo.lng,
+          ));
+      
+      batch.insertAll(_db.addresses, addresses,);
+      
+      final companies = users.map((u) => CompaniesCompanion.insert(
+            userId: u.id,
+            name: u.company.name,
+            catchPhrase: u.company.catchPhrase,
+            bs: u.company.bs,
+          ));
 
-        await _db.into(_db.addresses).insertOnConflictUpdate(
-              AddressesCompanion.insert(
-                userId: user.id,
-                street: user.address.street,
-                suite: user.address.suite,
-                city: user.address.city,
-                zipcode: user.address.zipcode,
-                lat: user.address.geo.lat,
-                lng: user.address.geo.lng,
-              ),
-            );
-
-        await _db.into(_db.companies).insertOnConflictUpdate(
-              CompaniesCompanion.insert(
-                userId: user.id,
-                name: user.company.name,
-                catchPhrase: user.company.catchPhrase,
-                bs: user.company.bs,
-              ),
-            );
-      }
+      batch.insertAll(_db.companies, companies,);
     });
   }
 }

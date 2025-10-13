@@ -1,6 +1,6 @@
-import 'package:data/src/tables/user/address_table.dart';
-import 'package:data/src/tables/user/company_table.dart';
-import 'package:data/src/tables/user/user_table.dart';
+import 'package:data/src/db/tables/user/address_table.dart';
+import 'package:data/src/db/tables/user/company_table.dart';
+import 'package:data/src/db/tables/user/user_table.dart';
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 import 'package:path_provider/path_provider.dart';

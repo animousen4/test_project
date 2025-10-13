@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:core/core.dart';
 import 'package:data/src/providers/user_cache_provider.dart';
 import 'package:domain/domain.dart';
@@ -22,18 +24,32 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<List<UserModel>> fetchAllUsers() async {
     try {
-      return _userApi
-          .fetchAllUsers()
-          .then((List<UserEntity> v) => v.map(_userMapper.mapToModel).toList());
-    } on DioException catch (e) {
-      final cachedUsers = await _userCacheProvider.fetchAllUsers();
+      final users = await _userApi.fetchAllUsers();
 
-      if (e.type == DioExceptionType.connectionTimeout &&
-          cachedUsers.isNotEmpty) {
-        return cachedUsers.map(_userMapper.mapToModel).toList();
-      } else {
+      await _userCacheProvider.saveAllUsers(users);
+
+      return users.map((e) => _userMapper.mapToModel(e)).toList();
+    } on SocketException catch (_) {
+      final cachedUsers = await getCachedUsers();
+
+      if (cachedUsers.isEmpty) {
         rethrow;
       }
+
+      return cachedUsers;
+    } on DioException catch (e) {
+      final cachedUsers = await getCachedUsers();
+      if (e.type == DioExceptionType.connectionError &&
+          cachedUsers.isNotEmpty) {
+        return cachedUsers;
+      }
+      rethrow;
     }
+  }
+
+  Future<List<UserModel>> getCachedUsers() {
+    return _userCacheProvider
+        .fetchAllUsers()
+        .then((v) => v.map((e) => _userMapper.mapToModel(e)).toList());
   }
 }

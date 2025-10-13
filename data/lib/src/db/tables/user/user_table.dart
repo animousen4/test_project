@@ -8,4 +8,7 @@ class Users extends Table {
   TextColumn get email => text()();
   TextColumn get phone => text()();
   TextColumn get website => text()();
+
+  @override
+  Set<Column<Object>>? get primaryKey => {id};
 }

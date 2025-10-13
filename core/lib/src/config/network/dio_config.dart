@@ -18,6 +18,9 @@ class DioConfig {
 
   DioConfig({required this.appConfig}) {
     _dio
+      ..options.headers['User-Agent'] =
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.6668.89 Safari/537.36'
+      ..options.headers['Content-Type'] = 'application/json'
       ..options.baseUrl = appConfig.baseUrl
       ..interceptors.addAll(<Interceptor>[
         RequestInterceptor(_dio, headers),

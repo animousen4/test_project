@@ -85,10 +85,15 @@ class _Body extends StatelessWidget {
       );
     }
 
-    return ListView.builder(
-      itemCount: users.length,
-      itemBuilder:
-          (BuildContext context, int index) => _UserTile(user: users[index]),
+    return RefreshIndicator(
+      onRefresh: () async {
+        context.read<UserOverviewBloc>().add(const UserOverviewEvent.load());
+      },
+      child: ListView.builder(
+        itemCount: users.length,
+        itemBuilder:
+            (BuildContext context, int index) => _UserTile(user: users[index]),
+      ),
     );
   }
 }
@@ -107,7 +112,7 @@ class _UserTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListTile(
-    title: Text(user.name),
+    title: Text(user.username),
     onTap: () {
       context.router.push(UserDetailsRoute(user: user));
     },

@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
@@ -45,14 +46,29 @@ class _Body extends StatelessWidget {
     }
 
     if (state.error != null) {
-      return Center(child: Text(state.error.toString()));
+      return ErrorBanner(exception: state.error!);
     }
 
     return ListView.builder(
       itemCount: users.length,
       itemBuilder:
-          (BuildContext context, int index) =>
-              ListTile(title: Text(users[index].name)),
+          (BuildContext context, int index) => _UserTile(user: users[index]),
     );
   }
+}
+
+/// {@template user_overview_screen}
+/// _UserTile widget.
+/// {@endtemplate}
+class _UserTile extends StatelessWidget {
+  /// {@macro user_overview_screen}
+  const _UserTile({
+    required this.user,
+    super.key, // ignore: unused_element_parameter
+  });
+
+  final UserModel user;
+
+  @override
+  Widget build(BuildContext context) => ListTile(title: Text(user.name));
 }

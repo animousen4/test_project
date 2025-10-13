@@ -16,14 +16,6 @@ Future<void> main() async {
   
   _setupDI(Flavor.dev);
 
-  // runZonedGuarded(
-  //   () => ,
-  //   (error, stackTrace) {
-  //     // log error to monitoring service
-
-  //   },
-  // );
-
   runApp(const App());
 }
 

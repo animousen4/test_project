@@ -1,12 +1,14 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:navigation/navigation.dart';
 
 import '../component/user_address_overview.dart';
 
 /// {@template user_details_screen}
 /// UserDetailsScreen widget.
 /// {@endtemplate}
+@RoutePage()
 class UserDetailsScreen extends StatelessWidget {
   /// {@macro user_details_screen}
   const UserDetailsScreen({

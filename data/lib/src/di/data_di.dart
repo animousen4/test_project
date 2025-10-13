@@ -49,7 +49,6 @@ abstract class DataDI {
       UserApiProvider(
         locator<DioConfig>().dio,
         baseUrl: locator<AppConfig>().baseUrl,
-        errorLogger: locator<ParseErrorLogger>(),
       ),
     );
 

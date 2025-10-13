@@ -1,4 +1,3 @@
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
 
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
@@ -195,6 +194,8 @@ abstract base class _$UserOverviewStateBase {
 
 sealed class UserOverviewEvent {
   const UserOverviewEvent();
+
+  const factory UserOverviewEvent.load() = UserOverviewLoad;
 }
 
 final class UserOverviewLoad extends UserOverviewEvent {

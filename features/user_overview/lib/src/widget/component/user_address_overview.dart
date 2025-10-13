@@ -1,7 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/widgets.dart';
 
-
 /// {@template user_address_overview}
 /// UserAddressOverview widget.
 /// {@endtemplate}
@@ -13,11 +12,11 @@ class UserAddressOverview extends StatelessWidget {
   });
 
   final AddressModel address;
-  
+
   String getAddressString() {
     return '${address.street}, ${address.suite}, ${address.city}, ${address.zipcode}';
   }
+
   @override
-  Widget build(BuildContext context) =>
-     Text(getAddressString());
+  Widget build(BuildContext context) => Text(getAddressString());
 }

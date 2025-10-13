@@ -2,13 +2,15 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:navigation/navigation.dart';
 
 import '../../bloc/user_overview_bloc.dart';
+import '../../navigation/user_overview_feature_routes.dart';
 
 /// {@template user_overview_screen}
 /// UserOverviewScreen widget.
 /// {@endtemplate}
-
+@RoutePage()
 class UserOverviewScreen extends StatelessWidget {
   /// {@macro user_overview_screen}
   const UserOverviewScreen({
@@ -21,8 +23,33 @@ class UserOverviewScreen extends StatelessWidget {
         (BuildContext context) => UserOverviewBloc(
           fetchAllUsersUseCase: appLocator<FetchUsersUseCase>(),
         ),
-    child: const _Body(),
+    child: const _Screen(),
   );
+}
+
+/// {@template user_overview_screen}
+/// _Body widget.
+/// {@endtemplate}
+class _Screen extends StatefulWidget {
+  /// {@macro user_overview_screen}
+  const _Screen({
+    super.key, // ignore: unused_element_parameter
+  });
+
+  @override
+  State<_Screen> createState() => _ScreenState();
+}
+
+class _ScreenState extends State<_Screen> {
+  @override
+  Widget build(BuildContext context) => const Scaffold(body: _Body());
+
+  @override
+  void initState() {
+    super.initState();
+
+    context.read<UserOverviewBloc>().add(const UserOverviewEvent.load());
+  }
 }
 
 /// {@template user_overview_screen}
@@ -46,7 +73,16 @@ class _Body extends StatelessWidget {
     }
 
     if (state.error != null) {
-      return ErrorBanner(exception: state.error!);
+      return Center(
+        child: ErrorBanner(
+          exception: state.error!,
+          onRetry: () {
+            context.read<UserOverviewBloc>().add(
+              const UserOverviewEvent.load(),
+            );
+          },
+        ),
+      );
     }
 
     return ListView.builder(
@@ -70,5 +106,10 @@ class _UserTile extends StatelessWidget {
   final UserModel user;
 
   @override
-  Widget build(BuildContext context) => ListTile(title: Text(user.name));
+  Widget build(BuildContext context) => ListTile(
+    title: Text(user.name),
+    onTap: () {
+      context.router.push(UserDetailsRoute(user: user));
+    },
+  );
 }

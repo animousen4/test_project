@@ -3,7 +3,6 @@ import 'package:data/src/db/app_drift_db.dart';
 import 'package:data/src/providers/db/user_cache_provider_impl.dart';
 import 'package:data/src/providers/user_cache_provider.dart';
 import 'package:domain/domain.dart';
-import 'package:retrofit/error_logger.dart';
 
 import '../../data.dart';
 import '../mappers/entity_mapper.dart';

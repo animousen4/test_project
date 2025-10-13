@@ -45,14 +45,16 @@ class App extends StatelessWidget {
       fallbackLocale: AppLocalization.fallbackLocale,
       child: Builder(
         builder: (BuildContext context) {
-          return AppErrorHandlerProvider(
-            child: MaterialApp.router(
-              debugShowCheckedModeBanner: false,
-              routerConfig: appRouter.config(),
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-              theme: lightTheme,
+          return ErrorUtilScope(
+            child: AppErrorHandlerProvider(
+              child: MaterialApp.router(
+                debugShowCheckedModeBanner: false,
+                routerConfig: appRouter.config(),
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
+                theme: lightTheme,
+              ),
             ),
           );
         },

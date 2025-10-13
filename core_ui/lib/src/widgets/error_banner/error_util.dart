@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'error_full_info.dart';
 
@@ -19,8 +18,9 @@ class ErrorUtilScope extends StatefulWidget {
 
   /// The state from the closest instance of this class
   /// that encloses the given context, if any.
-  static ErrorUtil? maybeOf(BuildContext context) =>
-      context.findAncestorStateOfType<_ErrorUtilScopeState>();
+  static ErrorUtil? maybeOf(BuildContext context) => context
+      .getInheritedWidgetOfExactType<_ErrorUtilScopeInherited>()
+      ?.errorUtil;
 
   @override
   State<ErrorUtilScope> createState() => _ErrorUtilScopeState();
@@ -68,7 +68,7 @@ mixin ErrorUtil {
     return ResolveResult(
       message: LocaleKeys.error_unexpected_error_occurred.tr(),
       title: Text(LocaleKeys.error_unexpected_error_occurred.tr()),
-      icon: const Icon(Icons.error),
+      icon: const Icon(Icons.error_outline_rounded),
       getMore: appLocator<AppConfig>().showDebugStackTrace && stackTrace != null
           ? (BuildContext context) => ErrorFullInfo(
                 title: Text(LocaleKeys.error_unexpected_error_occurred.tr()),

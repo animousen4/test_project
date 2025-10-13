@@ -64,7 +64,7 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UserOverviewState state =
-        BlocProvider.of<UserOverviewBloc>(context).state;
+        BlocProvider.of<UserOverviewBloc>(context, listen: true).state;
 
     final List<UserModel> users = state.data ?? <UserModel>[];
 

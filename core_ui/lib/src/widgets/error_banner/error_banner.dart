@@ -18,22 +18,22 @@ class ErrorBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final result =
+    final ResolveResult? result =
         ErrorUtilScope.maybeOf(context)?.resolveByException(context, exception);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
-      children: [
+      children: <Widget>[
         result?.icon ??
             Icon(
-              Icons.warning,
+              Icons.warning_rounded,
               color: Theme.of(context).colorScheme.error,
             ),
         const SizedBox(
           height: 10,
         ),
-        if (errorContextTitle != null) ...[
+        if (errorContextTitle != null) ...<Widget>[
           DefaultTextStyle.merge(
               style: const TextStyle(fontWeight: FontWeight.bold),
               child: errorContextTitle!),

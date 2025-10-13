@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../bloc/user_overview_bloc.dart';
 import 'user_overview_error_banner.dart';

@@ -1,4 +1,3 @@
-
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:meta/meta.dart';
@@ -257,6 +256,9 @@ class UserOverviewBloc extends Bloc<UserOverviewEvent, UserOverviewState> {
           stackTrace: s,
         ),
       );
+      // addError(e, s);
+      // Or rethrow; ???
+      rethrow;
     }
   }
 }

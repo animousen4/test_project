@@ -24,7 +24,8 @@ class ErrorHandler {
     switch (statusCode) {
       case 400:
         {
-          throw AppException(error.response?.data['message'] ?? 'empty message');
+          throw AppException(
+              error.response?.data['message'] ?? 'empty message');
         }
       case 401:
         {

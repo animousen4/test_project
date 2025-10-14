@@ -6,14 +6,15 @@ import 'package:domain/domain.dart';
 part 'app_error_handler_event.dart';
 part 'app_error_handler_state.dart';
 
-class AppErrorHandlerBloc extends Bloc<AppErrorHandlerEvent, AppErrorHandlerState> {
+class AppErrorHandlerBloc
+    extends Bloc<AppErrorHandlerEvent, AppErrorHandlerState> {
   final AppEventObserver _appEventObserver;
-  final List<StreamSubscription<AppEvent>> _subscriptions = <StreamSubscription<AppEvent>>[];
+  final List<StreamSubscription<AppEvent>> _subscriptions =
+      <StreamSubscription<AppEvent>>[];
 
-  AppErrorHandlerBloc({
-    required AppEventObserver appEventObserver,
-  })  : _appEventObserver = appEventObserver,
-        super(const AppErrorHandlerState()) {
+  AppErrorHandlerBloc({required AppEventObserver appEventObserver})
+    : _appEventObserver = appEventObserver,
+      super(const AppErrorHandlerState()) {
     on<CoreEventReceived>(_onCoreEventReceived);
     on<DomainEventReceived>(_onDomainEventReceived);
 

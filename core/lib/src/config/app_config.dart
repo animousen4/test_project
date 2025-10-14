@@ -7,7 +7,6 @@ class AppConfig {
   final String baseUrl;
   final String webSocketUrl;
 
-
   bool get showDebugStackTrace => flavor == Flavor.dev;
 
   AppConfig({

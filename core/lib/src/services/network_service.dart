@@ -9,5 +9,6 @@ abstract class NetworkService {
 
   static Future<bool> get hasConnection => _instance.hasInternetConnection;
 
-  static Stream<bool> get observeConnection => _instance.observeInternetConnection;
+  static Stream<bool> get observeConnection =>
+      _instance.observeInternetConnection;
 }

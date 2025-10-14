@@ -7,7 +7,6 @@ part 'user_api_provider.g.dart';
 
 @RestApi()
 abstract class UserApiProvider {
-
   factory UserApiProvider(Dio dio,
       {String? baseUrl, ParseErrorLogger? errorLogger}) = _UserApiProvider;
 

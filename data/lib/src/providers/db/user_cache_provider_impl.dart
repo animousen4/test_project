@@ -59,9 +59,12 @@ class UserCacheProviderImpl implements UserCacheProvider {
             lat: u.address.geo.lat,
             lng: u.address.geo.lng,
           ));
-      
-      batch.insertAll(_db.addresses, addresses,);
-      
+
+      batch.insertAll(
+        _db.addresses,
+        addresses,
+      );
+
       final companies = users.map((u) => CompaniesCompanion.insert(
             userId: u.id,
             name: u.company.name,
@@ -69,7 +72,10 @@ class UserCacheProviderImpl implements UserCacheProvider {
             bs: u.company.bs,
           ));
 
-      batch.insertAll(_db.companies, companies,);
+      batch.insertAll(
+        _db.companies,
+        companies,
+      );
     });
   }
 }

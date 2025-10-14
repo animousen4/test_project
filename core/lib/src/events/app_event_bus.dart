@@ -3,7 +3,8 @@ import 'dart:async';
 import '../../core.dart';
 
 class AppEventBus implements AppEventNotifier, AppEventObserver {
-  final StreamController<AppEvent> _controller = StreamController<AppEvent>.broadcast();
+  final StreamController<AppEvent> _controller =
+      StreamController<AppEvent>.broadcast();
 
   @override
   StreamSubscription<T> observe<T extends AppEvent>(
@@ -12,7 +13,9 @@ class AppEventBus implements AppEventNotifier, AppEventObserver {
   }) {
     return _controller.stream
         .where(
-          (AppEvent event) => event.runtimeType == T || (!observeEventsOfExactType && event is T),
+          (AppEvent event) =>
+              event.runtimeType == T ||
+              (!observeEventsOfExactType && event is T),
         )
         .cast<T>()
         .listen(handler);

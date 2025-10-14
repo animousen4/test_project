@@ -5,5 +5,6 @@ class CompanyModel {
   final String catchPhrase;
   final String bs;
 
-  CompanyModel({required this.name, required this.catchPhrase, required this.bs});
+  CompanyModel(
+      {required this.name, required this.catchPhrase, required this.bs});
 }

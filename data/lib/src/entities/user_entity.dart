@@ -24,8 +24,8 @@ class UserEntity {
     required this.company,
   });
 
-  factory UserEntity.fromJson(Map<String, dynamic> json) => _$UserEntityFromJson(json);
-  
+  factory UserEntity.fromJson(Map<String, dynamic> json) =>
+      _$UserEntityFromJson(json);
 }
 
 @JsonSerializable()
@@ -36,8 +36,14 @@ class AddressEntity {
   final String zipcode;
   final GeoEntity geo;
 
-  const AddressEntity({required this.street, required this.suite, required this.city, required this.zipcode, required this.geo});
-  factory AddressEntity.fromJson(Map<String, dynamic> json) => _$AddressEntityFromJson(json);
+  const AddressEntity(
+      {required this.street,
+      required this.suite,
+      required this.city,
+      required this.zipcode,
+      required this.geo});
+  factory AddressEntity.fromJson(Map<String, dynamic> json) =>
+      _$AddressEntityFromJson(json);
 }
 
 @JsonSerializable()
@@ -47,9 +53,9 @@ class GeoEntity {
 
   const GeoEntity({required this.lat, required this.lng});
 
-  factory GeoEntity.fromJson(Map<String, dynamic> json) => _$GeoEntityFromJson(json);
+  factory GeoEntity.fromJson(Map<String, dynamic> json) =>
+      _$GeoEntityFromJson(json);
 }
-
 
 @JsonSerializable()
 class CompanyEntity {
@@ -57,7 +63,9 @@ class CompanyEntity {
   final String catchPhrase;
   final String bs;
 
-  const CompanyEntity({required this.name, required this.catchPhrase, required this.bs});
+  const CompanyEntity(
+      {required this.name, required this.catchPhrase, required this.bs});
 
-  factory CompanyEntity.fromJson(Map<String, dynamic> json) => _$CompanyEntityFromJson(json);
+  factory CompanyEntity.fromJson(Map<String, dynamic> json) =>
+      _$CompanyEntityFromJson(json);
 }

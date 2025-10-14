@@ -10,5 +10,4 @@ class Addresses extends Table {
   TextColumn get zipcode => text()();
   TextColumn get lat => text()();
   TextColumn get lng => text()();
-
 }

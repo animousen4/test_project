@@ -10,7 +10,7 @@ abstract class LocalDataProvider {
   Future<bool> contains(String key);
 }
 
-class LocalDataProviderImpl implements LocalDataProvider{
+class LocalDataProviderImpl implements LocalDataProvider {
   @override
   Future<bool> contains(String key) {
     // TODO: implement contains
@@ -40,5 +40,4 @@ class LocalDataProviderImpl implements LocalDataProvider{
     // TODO: implement write
     throw UnimplementedError();
   }
-
 }

@@ -5,13 +5,11 @@ sealed class AppErrorHandlerEvent {
 }
 
 class CoreEventReceived extends AppErrorHandlerEvent {
-  final CoreEvent data;
-
   const CoreEventReceived(this.data);
+  final CoreEvent data;
 }
 
 class DomainEventReceived extends AppErrorHandlerEvent {
-  final DomainEvent data;
-
   const DomainEventReceived(this.data);
+  final DomainEvent data;
 }

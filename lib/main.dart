@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:data/data.dart';
@@ -6,12 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 
 import 'error_handler/provider/app_error_handler_provider.dart';
-  
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  
+
   _setupDI(Flavor.dev);
 
   runApp(const App());
@@ -28,7 +29,6 @@ void _setupDI(Flavor flavor) {
     },
   );
 }
-  
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -43,14 +43,16 @@ class App extends StatelessWidget {
       fallbackLocale: AppLocalization.fallbackLocale,
       child: Builder(
         builder: (BuildContext context) {
-          return AppErrorHandlerProvider(
-            child: MaterialApp.router(
-              debugShowCheckedModeBanner: false,
-              routerConfig: appRouter.config(),
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-              theme: lightTheme,
+          return ErrorUtilScope(
+            child: AppErrorHandlerProvider(
+              child: MaterialApp.router(
+                debugShowCheckedModeBanner: false,
+                routerConfig: appRouter.config(),
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
+                theme: lightTheme,
+              ),
             ),
           );
         },
@@ -58,5 +60,3 @@ class App extends StatelessWidget {
     );
   }
 }
-  
-  

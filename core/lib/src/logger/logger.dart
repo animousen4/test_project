@@ -1,6 +1,8 @@
 import 'package:logger/logger.dart';
 
 class AppLogger {
+  AppLogger._internal();
+  factory AppLogger() => _singleton;
   final Logger _log = Logger(
     // Use the default LogFilter (-> only log in debug mode)
     printer: PrettyPrinter(
@@ -9,9 +11,6 @@ class AppLogger {
   );
 
   static final AppLogger _singleton = AppLogger._internal();
-
-  AppLogger._internal();
-  factory AppLogger() => _singleton;
 
   /// Log a message at level [Level.trace].
   void verbose(dynamic message, [dynamic error, StackTrace? stackTrace]) {

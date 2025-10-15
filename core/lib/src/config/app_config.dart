@@ -3,10 +3,6 @@ enum Flavor {
 }
 
 class AppConfig {
-  final Flavor flavor;
-  final String baseUrl;
-  final String webSocketUrl;
-
   AppConfig({
     required this.flavor,
     required this.baseUrl,
@@ -18,7 +14,7 @@ class AppConfig {
     String webSocketUrl;
     switch (flavor) {
       case Flavor.dev:
-        baseUrl = '';
+        baseUrl = 'https://jsonplaceholder.typicode.com';
         webSocketUrl = '';
         break;
     }
@@ -29,4 +25,9 @@ class AppConfig {
       webSocketUrl: webSocketUrl,
     );
   }
+  final Flavor flavor;
+  final String baseUrl;
+  final String webSocketUrl;
+
+  bool get showDebugStackTrace => flavor == Flavor.dev;
 }

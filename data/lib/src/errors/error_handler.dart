@@ -2,11 +2,10 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
 class ErrorHandler {
-  final AppEventNotifier _eventNotifier;
-
   ErrorHandler({
     required AppEventNotifier eventNotifier,
   }) : _eventNotifier = eventNotifier;
+  final AppEventNotifier _eventNotifier;
 
   Future<Never> handleError(DioException error) async {
     final Response<dynamic>? response = error.response;
@@ -24,7 +23,9 @@ class ErrorHandler {
     switch (statusCode) {
       case 400:
         {
-          throw AppException(error.response?.data['message'] ?? 'empty message');
+          throw AppException(
+            error.response?.data['message'] ?? 'empty message',
+          );
         }
       case 401:
         {

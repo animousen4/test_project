@@ -3,15 +3,6 @@ part 'company_model.dart';
 part 'geo_model.dart';
 
 class UserModel {
-  final String id;
-  final String name;
-  final String username;
-  final String email;
-  final AddressModel address;
-  final String phone;
-  final String website;
-  final CompanyModel company;
-
   UserModel({
     required this.id,
     required this.name,
@@ -22,4 +13,12 @@ class UserModel {
     required this.website,
     required this.company,
   });
+  final int id;
+  final String name;
+  final String username;
+  final String email;
+  final AddressModel address;
+  final String phone;
+  final String website;
+  final CompanyModel company;
 }

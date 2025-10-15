@@ -1,9 +1,23 @@
 {
   "common" : {
-    "example_key" : "Example Value"
+    "example_key" : "Example Value",
+    "retry": "Retry"
   },
   "error" : {
     "unexpected_error_occurred" : "Unexpected error occurred",
-    "network_error_occurred" : "Network error occurred"
+    "unknown_error_occurred" : "Unknown error occurred",
+    "network_error_occurred" : "Network error occurred",
+    "show_exception_details": "Show exception details"
+  },
+  "user": {
+    "user_data": "User data: {username}",
+    "users": "Users",
+    "username": "Username",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "company": "Company",
+    "not_found": "No users found"
+    
   }
 }

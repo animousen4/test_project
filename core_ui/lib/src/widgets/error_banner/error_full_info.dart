@@ -10,9 +10,11 @@ class ErrorFullInfo extends StatelessWidget {
     this.body,
     this.stackTrace,
   });
+
   final Widget title;
   final Widget? body;
   final StackTrace? stackTrace;
+
   @override
   Widget build(BuildContext context) {
     assert(
@@ -26,16 +28,20 @@ class ErrorFullInfo extends StatelessWidget {
         size: size,
         child: Row(
           children: <Widget>[
-            if (body != null) Flexible(child: body!),
-            if ((appLocator<AppConfig>().showDebugStackTrace) &&
-                stackTrace != null) ...<Widget>[
+            if (body case final Widget nonNullBody)
+              Flexible(child: nonNullBody),
+            if ((appLocator<AppConfig>().showDebugStackTrace, stackTrace)
+                case (
+                  true,
+                  final StackTrace nonNullStackTrace,
+                )) ...<Widget>[
               const SizedBox(
                 width: 10,
               ),
               Flexible(
                 child: SingleChildScrollView(
                   child: StackTraceView(
-                    stackTrace: stackTrace!,
+                    stackTrace: nonNullStackTrace,
                   ),
                 ),
               ),

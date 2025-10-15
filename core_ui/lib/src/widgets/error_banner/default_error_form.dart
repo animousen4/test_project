@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core_ui.dart';
+import 'util/resolve_result.dart';
 
 class DefaultErrorForm extends StatelessWidget {
   const DefaultErrorForm({

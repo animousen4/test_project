@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'error_util.dart';
 
+import 'package:flutter/widgets.dart';
+
 class ErrorBanner extends StatelessWidget {
   const ErrorBanner(
       {super.key,

@@ -4,7 +4,6 @@ part 'user_entity.g.dart';
 
 @JsonSerializable()
 class UserEntity {
-
   const UserEntity({
     required this.id,
     required this.name,
@@ -30,13 +29,13 @@ class UserEntity {
 
 @JsonSerializable()
 class AddressEntity {
-
-  const AddressEntity(
-      {required this.street,
-      required this.suite,
-      required this.city,
-      required this.zipcode,
-      required this.geo,});
+  const AddressEntity({
+    required this.street,
+    required this.suite,
+    required this.city,
+    required this.zipcode,
+    required this.geo,
+  });
   factory AddressEntity.fromJson(Map<String, dynamic> json) =>
       _$AddressEntityFromJson(json);
   final String street;
@@ -48,7 +47,6 @@ class AddressEntity {
 
 @JsonSerializable()
 class GeoEntity {
-
   const GeoEntity({required this.lat, required this.lng});
 
   factory GeoEntity.fromJson(Map<String, dynamic> json) =>
@@ -59,9 +57,11 @@ class GeoEntity {
 
 @JsonSerializable()
 class CompanyEntity {
-
-  const CompanyEntity(
-      {required this.name, required this.catchPhrase, required this.bs,});
+  const CompanyEntity({
+    required this.name,
+    required this.catchPhrase,
+    required this.bs,
+  });
 
   factory CompanyEntity.fromJson(Map<String, dynamic> json) =>
       _$CompanyEntityFromJson(json);

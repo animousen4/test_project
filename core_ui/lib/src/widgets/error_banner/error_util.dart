@@ -55,8 +55,11 @@ class _ErrorUtilScopeState extends State<ErrorUtilScope> with ErrorUtil {
 mixin ErrorUtil {
   final List<ExceptionResolver> _exceptionResolvers = <ExceptionResolver>[];
 
-  ResolveResult resolveByException(BuildContext context, Object exception,
-      [StackTrace? stackTrace,]) {
+  ResolveResult resolveByException(
+    BuildContext context,
+    Object exception, [
+    StackTrace? stackTrace,
+  ]) {
     for (final ExceptionResolver resolver in _exceptionResolvers) {
       final ResolveResult? result =
           resolver.resolveException(context, exception, stackTrace);
@@ -80,12 +83,12 @@ mixin ErrorUtil {
 }
 
 class ResolveResult {
-
-  ResolveResult(
-      {required this.message,
-      required this.title,
-      required this.icon,
-      required this.getMore,});
+  ResolveResult({
+    required this.message,
+    required this.title,
+    required this.icon,
+    required this.getMore,
+  });
   final String? message;
   final Widget title;
   final Widget? icon;
@@ -93,14 +96,20 @@ class ResolveResult {
 }
 
 abstract class ExceptionResolver {
-  ResolveResult? resolveException(BuildContext context, Object exception,
-      [StackTrace? stackTrace,]);
+  ResolveResult? resolveException(
+    BuildContext context,
+    Object exception, [
+    StackTrace? stackTrace,
+  ]);
 }
 
 class ExceptionResolver$DioException implements ExceptionResolver {
   @override
-  ResolveResult? resolveException(BuildContext context, Object exception,
-      [StackTrace? stackTrace,]) {
+  ResolveResult? resolveException(
+    BuildContext context,
+    Object exception, [
+    StackTrace? stackTrace,
+  ]) {
     if (exception
         case DioException(
           type: DioExceptionType.connectionError ||

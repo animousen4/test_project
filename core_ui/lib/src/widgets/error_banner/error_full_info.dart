@@ -1,16 +1,24 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import 'stack_trace_view.dart';
+
 class ErrorFullInfo extends StatelessWidget {
-  const ErrorFullInfo(
-      {super.key, required this.title, this.body, this.stackTrace,});
+  const ErrorFullInfo({
+    super.key,
+    required this.title,
+    this.body,
+    this.stackTrace,
+  });
   final Widget title;
   final Widget? body;
   final StackTrace? stackTrace;
   @override
   Widget build(BuildContext context) {
-    assert(body != null || stackTrace != null,
-        'Either body or stackTrace must be provided',);
+    assert(
+      body != null || stackTrace != null,
+      'Either body or stackTrace must be provided',
+    );
     final Size size = MediaQuery.of(context).size * 0.6;
     return AlertDialog(
       title: title,
@@ -25,26 +33,16 @@ class ErrorFullInfo extends StatelessWidget {
                 width: 10,
               ),
               Flexible(
-                  child: SingleChildScrollView(
-                child: StackTraceView(
-                  stackTrace: stackTrace!,
+                child: SingleChildScrollView(
+                  child: StackTraceView(
+                    stackTrace: stackTrace!,
+                  ),
                 ),
-              ),),
+              ),
             ],
           ],
         ),
       ),
     );
-  }
-}
-
-class StackTraceView extends StatelessWidget {
-  const StackTraceView({super.key, required this.stackTrace});
-
-  final StackTrace stackTrace;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(stackTrace.toString());
   }
 }

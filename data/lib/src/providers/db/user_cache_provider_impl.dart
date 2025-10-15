@@ -5,10 +5,10 @@ import '../../entities/user_entity.dart';
 import '../user_cache_provider.dart';
 
 class UserCacheProviderImpl implements UserCacheProvider {
-  const UserCacheProviderImpl(
-      {required UserDbModelMapper userDbModelMapper,
-      required AppDriftDatabase db,})
-      : _db = db,
+  const UserCacheProviderImpl({
+    required UserDbModelMapper userDbModelMapper,
+    required AppDriftDatabase db,
+  })  : _db = db,
         _userDbModelMapper = userDbModelMapper;
   final AppDriftDatabase _db;
   final UserDbModelMapper _userDbModelMapper;
@@ -19,9 +19,13 @@ class UserCacheProviderImpl implements UserCacheProvider {
         .select(_db.users)
         .join(<Join<HasResultSet, dynamic>>[
           innerJoin(
-              _db.addresses, _db.addresses.userId.equalsExp(_db.users.id),),
+            _db.addresses,
+            _db.addresses.userId.equalsExp(_db.users.id),
+          ),
           innerJoin(
-              _db.companies, _db.companies.userId.equalsExp(_db.users.id),),
+            _db.companies,
+            _db.companies.userId.equalsExp(_db.users.id),
+          ),
         ])
         .map(
           (TypedResult e) => _userDbModelMapper.mapToEntity(
@@ -41,36 +45,42 @@ class UserCacheProviderImpl implements UserCacheProvider {
       batch.deleteAll(_db.users);
       batch.insertAllOnConflictUpdate(
         _db.users,
-        users.map((UserEntity u) => UsersCompanion.insert(
-              id: Value(u.id),
-              name: u.name,
-              username: u.username,
-              email: u.email,
-              phone: u.phone,
-              website: u.website,
-            ),),
+        users.map(
+          (UserEntity u) => UsersCompanion.insert(
+            id: Value(u.id),
+            name: u.name,
+            username: u.username,
+            email: u.email,
+            phone: u.phone,
+            website: u.website,
+          ),
+        ),
       );
-      final Iterable<AddressesCompanion> addresses = users.map((UserEntity u) => AddressesCompanion.insert(
-            userId: u.id,
-            street: u.address.street,
-            suite: u.address.suite,
-            city: u.address.city,
-            zipcode: u.address.zipcode,
-            lat: u.address.geo.lat,
-            lng: u.address.geo.lng,
-          ),);
+      final Iterable<AddressesCompanion> addresses = users.map(
+        (UserEntity u) => AddressesCompanion.insert(
+          userId: u.id,
+          street: u.address.street,
+          suite: u.address.suite,
+          city: u.address.city,
+          zipcode: u.address.zipcode,
+          lat: u.address.geo.lat,
+          lng: u.address.geo.lng,
+        ),
+      );
 
       batch.insertAll(
         _db.addresses,
         addresses,
       );
 
-      final Iterable<CompaniesCompanion> companies = users.map((UserEntity u) => CompaniesCompanion.insert(
-            userId: u.id,
-            name: u.company.name,
-            catchPhrase: u.company.catchPhrase,
-            bs: u.company.bs,
-          ),);
+      final Iterable<CompaniesCompanion> companies = users.map(
+        (UserEntity u) => CompaniesCompanion.insert(
+          userId: u.id,
+          name: u.company.name,
+          catchPhrase: u.company.catchPhrase,
+          bs: u.company.bs,
+        ),
+      );
 
       batch.insertAll(
         _db.companies,
@@ -81,10 +91,11 @@ class UserCacheProviderImpl implements UserCacheProvider {
 }
 
 class UserDbModelMapper {
-  UserEntity mapToEntity(
-      {required User user,
-      required Address address,
-      required Company company,}) {
+  UserEntity mapToEntity({
+    required User user,
+    required Address address,
+    required Company company,
+  }) {
     return UserEntity(
       id: user.id,
       name: user.name,

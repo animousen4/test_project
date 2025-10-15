@@ -1,7 +1,6 @@
 part of '../dio_config.dart';
 
 class ResponseInterceptor extends Interceptor {
-
   ResponseInterceptor(this.dio);
   final Dio dio;
 

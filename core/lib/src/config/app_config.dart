@@ -3,7 +3,6 @@ enum Flavor {
 }
 
 class AppConfig {
-
   AppConfig({
     required this.flavor,
     required this.baseUrl,

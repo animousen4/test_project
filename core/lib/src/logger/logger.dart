@@ -1,7 +1,6 @@
 import 'package:logger/logger.dart';
 
 class AppLogger {
-
   AppLogger._internal();
   factory AppLogger() => _singleton;
   final Logger _log = Logger(

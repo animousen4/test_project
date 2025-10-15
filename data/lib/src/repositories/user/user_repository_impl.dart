@@ -9,12 +9,11 @@ import '../../providers/user_api_provider.dart';
 import '../../providers/user_cache_provider.dart';
 
 class UserRepositoryImpl implements UserRepository {
-
-  UserRepositoryImpl(
-      {required UserApiProvider userApi,
-      required UserCacheProvider userCacheProvider,
-      required ToModelMapper<UserModel, UserEntity> userMapper,})
-      : _userApi = userApi,
+  UserRepositoryImpl({
+    required UserApiProvider userApi,
+    required UserCacheProvider userCacheProvider,
+    required ToModelMapper<UserModel, UserEntity> userMapper,
+  })  : _userApi = userApi,
         _userCacheProvider = userCacheProvider,
         _userMapper = userMapper;
   final UserApiProvider _userApi;

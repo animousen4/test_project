@@ -3,7 +3,6 @@ part 'company_model.dart';
 part 'geo_model.dart';
 
 class UserModel {
-
   UserModel({
     required this.id,
     required this.name,

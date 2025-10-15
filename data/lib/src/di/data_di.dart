@@ -51,10 +51,12 @@ abstract class DataDI {
       ),
     );
 
-    locator.registerSingleton<UserCacheProvider>(UserCacheProviderImpl(
-      db: locator<AppDriftDatabase>(),
-      userDbModelMapper: UserDbModelMapper(),
-    ),);
+    locator.registerSingleton<UserCacheProvider>(
+      UserCacheProviderImpl(
+        db: locator<AppDriftDatabase>(),
+        userDbModelMapper: UserDbModelMapper(),
+      ),
+    );
 
     locator.registerLazySingleton<ToModelMapper<UserModel, UserEntity>>(
       () => UserModelMapperImpl(

@@ -5,16 +5,9 @@ import 'package:navigation/navigation.dart';
 
 import '../component/user_address_overview.dart';
 
-/// {@template user_details_screen}
-/// UserDetailsScreen widget.
-/// {@endtemplate}
 @RoutePage()
 class UserDetailsScreen extends StatelessWidget {
-  /// {@macro user_details_screen}
-  const UserDetailsScreen({
-    super.key, // ignore: unused_element_parameter
-    required this.user,
-  });
+  const UserDetailsScreen({super.key, required this.user});
 
   final UserModel user;
 

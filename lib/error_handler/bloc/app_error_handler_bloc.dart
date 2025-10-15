@@ -8,7 +8,6 @@ part 'app_error_handler_state.dart';
 
 class AppErrorHandlerBloc
     extends Bloc<AppErrorHandlerEvent, AppErrorHandlerState> {
-
   AppErrorHandlerBloc({required AppEventObserver appEventObserver})
     : _appEventObserver = appEventObserver,
       super(const AppErrorHandlerState()) {

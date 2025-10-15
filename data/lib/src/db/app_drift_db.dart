@@ -8,11 +8,13 @@ import 'tables/user/user_table.dart';
 
 part 'app_drift_db.g.dart';
 
-@DriftDatabase(tables: <Type>[
-  Addresses,
-  Companies,
-  Users,
-],)
+@DriftDatabase(
+  tables: <Type>[
+    Addresses,
+    Companies,
+    Users,
+  ],
+)
 class AppDriftDatabase extends _$AppDriftDatabase {
   AppDriftDatabase() : super(_openConnection());
 

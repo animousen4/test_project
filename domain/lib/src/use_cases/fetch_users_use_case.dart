@@ -1,7 +1,6 @@
 import '../../domain.dart';
 
 class FetchUsersUseCase implements FutureUseCase<void, List<UserModel>> {
-
   FetchUsersUseCase({required this.userRepository});
   final UserRepository userRepository;
 

@@ -4,15 +4,10 @@ import 'package:flutter/material.dart';
 
 import '../../bloc/user_overview_bloc.dart';
 import 'user_overview_error_banner.dart';
+import 'user_tile.dart';
 
-/// {@template user_list_view}
-/// UserListView widget.
-/// {@endtemplate}
 class UserListView extends StatelessWidget {
-  /// {@macro user_list_view}
-  const UserListView({
-    super.key, // ignore: unused_element_parameter
-  });
+  const UserListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +18,7 @@ class UserListView extends StatelessWidget {
           return const CircularProgressIndicator();
         }
         if (data.isEmpty) {
-          return const Text('No users found');
+          return Text(LocaleKeys.user_not_found.tr());
         }
         if (state.isFailed) {
           return UserOverviewErrorBanner(
@@ -33,26 +28,9 @@ class UserListView extends StatelessWidget {
         }
         return ListView.builder(
           itemBuilder:
-              (BuildContext context, int index) => _UserTile(user: data[index]),
+              (BuildContext context, int index) => UserTile(user: data[index]),
         );
       },
     );
   }
-}
-
-/// {@template user_list_view}
-/// _UserTile widget.
-/// {@endtemplate}
-class _UserTile extends StatelessWidget {
-  /// {@macro user_list_view}
-  const _UserTile({
-    super.key, // ignore: unused_element_parameter
-    required this.user,
-  });
-
-  final UserModel user;
-
-  @override
-  Widget build(BuildContext context) =>
-      ListTile(title: Text(user.username), subtitle: Text(user.email));
 }

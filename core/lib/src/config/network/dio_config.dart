@@ -9,7 +9,6 @@ part 'interceptors/request_interceptor.dart';
 part 'interceptors/response_interceptor.dart';
 
 class DioConfig {
-
   DioConfig({required this.appConfig}) {
     _dio
       ..options.headers['User-Agent'] =

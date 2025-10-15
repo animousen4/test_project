@@ -1,7 +1,6 @@
 part of '../dio_config.dart';
 
 class ErrorInterceptor extends Interceptor {
-
   ErrorInterceptor(this.dio);
   final Dio dio;
 

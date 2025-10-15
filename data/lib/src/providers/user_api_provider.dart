@@ -10,7 +10,6 @@ abstract class UserApiProvider {
   factory UserApiProvider(
     Dio dio, {
     String? baseUrl,
-    ParseErrorLogger? errorLogger,
   }) = _UserApiProvider;
 
   @GET('/users')

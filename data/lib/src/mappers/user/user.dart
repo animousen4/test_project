@@ -1,1 +1,1 @@
-export 'user_model_mapper_impl.dart';
+export 'user_model_mapper.dart';

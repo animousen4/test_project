@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 
 import '../../db/app_drift_db.dart';
 import '../../entities/user_entity.dart';
+import '../../mappers/user/user_db_model_mapper.dart';
 import '../user_cache_provider.dart';
 
 class UserCacheProviderImpl implements UserCacheProvider {
@@ -38,7 +39,7 @@ class UserCacheProviderImpl implements UserCacheProvider {
   }
 
   @override
-  Future<void> saveAllUsers(List<UserEntity> users) async {
+  Future<void> saveAllUsers({required List<UserEntity> users}) async {
     await _db.batch((Batch batch) {
       batch.deleteAll(_db.addresses);
       batch.deleteAll(_db.companies);
@@ -47,7 +48,7 @@ class UserCacheProviderImpl implements UserCacheProvider {
         _db.users,
         users.map(
           (UserEntity u) => UsersCompanion.insert(
-            id: Value(u.id),
+            id: Value<int>(u.id),
             name: u.name,
             username: u.username,
             email: u.email,
@@ -87,37 +88,5 @@ class UserCacheProviderImpl implements UserCacheProvider {
         companies,
       );
     });
-  }
-}
-
-class UserDbModelMapper {
-  UserEntity mapToEntity({
-    required User user,
-    required Address address,
-    required Company company,
-  }) {
-    return UserEntity(
-      id: user.id,
-      name: user.name,
-      username: user.username,
-      email: user.email,
-      phone: user.phone,
-      website: user.website,
-      address: AddressEntity(
-        street: address.street,
-        suite: address.suite,
-        city: address.city,
-        zipcode: address.zipcode,
-        geo: GeoEntity(
-          lat: address.lat,
-          lng: address.lng,
-        ),
-      ),
-      company: CompanyEntity(
-        name: company.name,
-        catchPhrase: company.catchPhrase,
-        bs: company.bs,
-      ),
-    );
   }
 }

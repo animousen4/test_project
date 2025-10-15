@@ -25,7 +25,7 @@ class UserRepositoryImpl implements UserRepository {
     try {
       final List<UserEntity> users = await _userApi.fetchAllUsers();
 
-      await _userCacheProvider.saveAllUsers(users);
+      await _userCacheProvider.saveAllUsers(users: users);
 
       return users.map(_userMapper.mapToModel).toList();
     } on SocketException catch (_) {

@@ -3,9 +3,8 @@ import 'package:domain/domain.dart';
 import '../../entities/user_entity.dart';
 import '../entity_mapper.dart';
 
-class UserAddressMapperImpl
-    implements ToModelMapper<AddressModel, AddressEntity> {
-  const UserAddressMapperImpl({
+class UserAddressMapper implements ToModelMapper<AddressModel, AddressEntity> {
+  const UserAddressMapper({
     required ToModelMapper<GeoModel, GeoEntity> geoMapper,
   }) : _geoMapper = geoMapper;
 

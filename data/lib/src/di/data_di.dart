@@ -4,9 +4,10 @@ import 'package:domain/domain.dart';
 import '../../data.dart';
 import '../db/app_drift_db.dart';
 import '../mappers/entity_mapper.dart';
-import '../mappers/user/company_model_mapper_impl.dart';
-import '../mappers/user/geo_model_mapper_impl.dart';
-import '../mappers/user/user_address_mapper_impl.dart';
+import '../mappers/user/company_model_mapper.dart';
+import '../mappers/user/geo_model_mapper.dart';
+import '../mappers/user/user_address_mapper.dart';
+import '../mappers/user/user_db_model_mapper_impl.dart';
 import '../providers/db/user_cache_provider_impl.dart';
 import '../providers/user_api_provider.dart';
 import '../providers/user_cache_provider.dart';
@@ -54,19 +55,19 @@ abstract class DataDI {
     locator.registerSingleton<UserCacheProvider>(
       UserCacheProviderImpl(
         db: locator<AppDriftDatabase>(),
-        userDbModelMapper: UserDbModelMapper(),
+        userDbModelMapper: UserDbModelMapperImpl(),
       ),
     );
 
     locator.registerLazySingleton<ToModelMapper<UserModel, UserEntity>>(
-      () => UserModelMapperImpl(
-        addressMapper: UserAddressMapperImpl(geoMapper: GeoModelMapperImpl()),
-        companyMapper: CompanyModelMapperImpl(),
+      () => UserModelMapper(
+        addressMapper: UserAddressMapper(geoMapper: GeoModelMapper()),
+        companyMapper: CompanyModelMapper(),
       ),
     );
 
     locator.registerLazySingleton<ToModelMapper<CompanyModel, CompanyEntity>>(
-      CompanyModelMapperImpl.new,
+      CompanyModelMapper.new,
     );
   }
 

@@ -3,8 +3,7 @@ import 'package:domain/domain.dart';
 import '../../entities/user_entity.dart';
 import '../entity_mapper.dart';
 
-class CompanyModelMapperImpl
-    implements ToModelMapper<CompanyModel, CompanyEntity> {
+class CompanyModelMapper implements ToModelMapper<CompanyModel, CompanyEntity> {
   @override
   CompanyModel mapToModel(CompanyEntity entity) {
     return CompanyModel(

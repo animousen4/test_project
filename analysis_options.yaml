@@ -229,11 +229,11 @@ linter:
     provide_deprecation_message: false
     public_member_api_docs: false
     recursive_getters: true
-    require_trailing_commas: false
+    require_trailing_commas: true
     sized_box_for_whitespace: true
     slash_for_doc_comments: true
     sort_child_properties_last: true
-    sort_constructors_first: false
+    sort_constructors_first: true
     sort_unnamed_constructors_first: false
     tighten_type_of_initializing_formals: true
     type_annotate_public_apis: false

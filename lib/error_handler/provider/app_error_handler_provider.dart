@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../bloc/app_error_handler_bloc.dart';
 
 class AppErrorHandlerProvider extends StatelessWidget {
-  final Widget child;
 
   const AppErrorHandlerProvider({super.key, required this.child});
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

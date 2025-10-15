@@ -9,12 +9,6 @@ part 'interceptors/request_interceptor.dart';
 part 'interceptors/response_interceptor.dart';
 
 class DioConfig {
-  final AppConfig appConfig;
-  static const int timeout = 10 * 1000;
-
-  final Dio _dio = Dio();
-
-  Dio get dio => _dio;
 
   DioConfig({required this.appConfig}) {
     _dio
@@ -29,6 +23,12 @@ class DioConfig {
         dioLoggerInterceptor,
       ]);
   }
+  final AppConfig appConfig;
+  static const int timeout = 10 * 1000;
+
+  final Dio _dio = Dio();
+
+  Dio get dio => _dio;
 
   Map<String, String> headers = <String, String>{};
 

@@ -1,15 +1,15 @@
 import 'package:core/core.dart';
-import 'package:data/src/db/app_drift_db.dart';
-import 'package:data/src/providers/db/user_cache_provider_impl.dart';
-import 'package:data/src/providers/user_cache_provider.dart';
 import 'package:domain/domain.dart';
 
 import '../../data.dart';
+import '../db/app_drift_db.dart';
 import '../mappers/entity_mapper.dart';
 import '../mappers/user/company_model_mapper_impl.dart';
 import '../mappers/user/geo_model_mapper_impl.dart';
 import '../mappers/user/user_address_mapper_impl.dart';
+import '../providers/db/user_cache_provider_impl.dart';
 import '../providers/user_api_provider.dart';
+import '../providers/user_cache_provider.dart';
 
 abstract class DataDI {
   static void initDependencies(GetIt locator) {
@@ -54,7 +54,7 @@ abstract class DataDI {
     locator.registerSingleton<UserCacheProvider>(UserCacheProviderImpl(
       db: locator<AppDriftDatabase>(),
       userDbModelMapper: UserDbModelMapper(),
-    ));
+    ),);
 
     locator.registerLazySingleton<ToModelMapper<UserModel, UserEntity>>(
       () => UserModelMapperImpl(

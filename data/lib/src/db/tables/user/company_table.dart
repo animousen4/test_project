@@ -1,7 +1,8 @@
-import 'package:data/src/db/tables/user/user_table.dart';
 import 'package:drift/drift.dart';
 
-@DataClassName("Company")
+import 'user_table.dart';
+
+@DataClassName('Company')
 class Companies extends Table {
   IntColumn get userId => integer().unique().references(Users, #id)();
   TextColumn get name => text()();

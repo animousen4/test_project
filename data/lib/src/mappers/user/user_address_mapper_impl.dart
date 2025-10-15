@@ -6,7 +6,7 @@ import '../entity_mapper.dart';
 class UserAddressMapperImpl
     implements ToModelMapper<AddressModel, AddressEntity> {
   const UserAddressMapperImpl(
-      {required ToModelMapper<GeoModel, GeoEntity> geoMapper})
+      {required ToModelMapper<GeoModel, GeoEntity> geoMapper,})
       : _geoMapper = geoMapper;
 
   final ToModelMapper<GeoModel, GeoEntity> _geoMapper;

@@ -1,4 +1,4 @@
-import 'package:data/src/entities/user_entity.dart';
+import '../entities/user_entity.dart';
 
 abstract interface class UserCacheProvider {
   /// Or use UserModel

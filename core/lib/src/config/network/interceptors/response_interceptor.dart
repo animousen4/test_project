@@ -1,9 +1,9 @@
 part of '../dio_config.dart';
 
 class ResponseInterceptor extends Interceptor {
-  final Dio dio;
 
   ResponseInterceptor(this.dio);
+  final Dio dio;
 
   @override
   Future<void> onResponse(

@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'error_util.dart';
 
-import 'package:flutter/widgets.dart';
-
 class ErrorBanner extends StatelessWidget {
   const ErrorBanner(
       {super.key,
       required this.exception,
       this.errorContextTitle,
-      this.onRetry});
+      this.onRetry,});
 
   final Widget? errorContextTitle;
 
@@ -38,7 +36,7 @@ class ErrorBanner extends StatelessWidget {
         if (errorContextTitle != null) ...<Widget>[
           DefaultTextStyle.merge(
               style: const TextStyle(fontWeight: FontWeight.bold),
-              child: errorContextTitle!),
+              child: errorContextTitle!,),
           const SizedBox(
             height: 10,
           ),
@@ -65,7 +63,7 @@ class ErrorBanner extends StatelessWidget {
           TextButton.icon(
               onPressed: onRetry,
               label: Text(LocaleKeys.common_retry.tr()),
-              icon: const Icon(Icons.refresh)),
+              icon: const Icon(Icons.refresh),),
       ],
     );
   }

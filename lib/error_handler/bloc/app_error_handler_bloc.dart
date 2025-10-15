@@ -8,9 +8,6 @@ part 'app_error_handler_state.dart';
 
 class AppErrorHandlerBloc
     extends Bloc<AppErrorHandlerEvent, AppErrorHandlerState> {
-  final AppEventObserver _appEventObserver;
-  final List<StreamSubscription<AppEvent>> _subscriptions =
-      <StreamSubscription<AppEvent>>[];
 
   AppErrorHandlerBloc({required AppEventObserver appEventObserver})
     : _appEventObserver = appEventObserver,
@@ -30,6 +27,9 @@ class AppErrorHandlerBloc
       ),
     );
   }
+  final AppEventObserver _appEventObserver;
+  final List<StreamSubscription<AppEvent>> _subscriptions =
+      <StreamSubscription<AppEvent>>[];
 
   Future<void> _onCoreEventReceived(
     CoreEventReceived event,

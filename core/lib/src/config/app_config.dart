@@ -3,11 +3,6 @@ enum Flavor {
 }
 
 class AppConfig {
-  final Flavor flavor;
-  final String baseUrl;
-  final String webSocketUrl;
-
-  bool get showDebugStackTrace => flavor == Flavor.dev;
 
   AppConfig({
     required this.flavor,
@@ -31,4 +26,9 @@ class AppConfig {
       webSocketUrl: webSocketUrl,
     );
   }
+  final Flavor flavor;
+  final String baseUrl;
+  final String webSocketUrl;
+
+  bool get showDebugStackTrace => flavor == Flavor.dev;
 }

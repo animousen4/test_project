@@ -1,9 +1,9 @@
 part of '../dio_config.dart';
 
 class ErrorInterceptor extends Interceptor {
-  final Dio dio;
 
   ErrorInterceptor(this.dio);
+  final Dio dio;
 
   @override
   Future<void> onError(

@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-@DataClassName("User")
+@DataClassName('User')
 class Users extends Table {
   IntColumn get id => integer()();
   TextColumn get name => text()();
@@ -10,5 +10,5 @@ class Users extends Table {
   TextColumn get website => text()();
 
   @override
-  Set<Column<Object>>? get primaryKey => {id};
+  Set<Column<Object>>? get primaryKey => <Column<Object>>{id};
 }
